@@ -1,0 +1,49 @@
+- name: Create a VM from latest template
+  hosts: localhost
+  gather_facts: yes
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+  tasks:
+    - set_fact:
+        vm_name: "{{ vmware_template }}"
+        datacenter: "{{ vmware_datacenter }}"
+        cluster_name: "{{ vmware_cluster }}"
+
+    - name: Get VM "{{ vmware_template }}" uuid
+      vmware_guest_facts:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        datacenter: "{{ vmware_datacenter }}"
+        folder: "{{ vmware_folder }}"
+        name: "{{ vmware_template }}"
+      register: vm_facts
+
+#    - name: get ip
+#      debug:
+#        msg: "{{ hostvars['localhost']['vm_facts.instance.ipv4'] }}"
+#        msg: "{{ vm_facts.instance.ipv4 }} {{ test_vm }}"
+
+#    - name: add variable to host
+#      add_host:      
+#        name: "IP"
+#        value: "{{ vm_facts.instance.ipv4 }}"
+
+#    - name: set facts
+#      set_fact:
+#        vm_ip: "{{ hostvars['localhost']['vm_facts.instance.ipv4'] }}"
+
+- name: Create a VM from latest template
+  hosts: wintel03
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+  tasks:
+  - name: print variable
+    debug:
+#      msg: "{{ hostvars['IP']['value'] }}"
+      msg: "{{ hostvars['localhost']['vm_facts']['instance']['hw_eth0']['macaddress_dash'] }}"
+#      msg: "{{ hostvars['localhost']['vm_facts']['instance']['ipv4'] }}"
+#      msg: "{{ vm_ip }}"
