@@ -10,6 +10,6 @@
    vmware_netconfig: no
 #   vm_name: w2k12r2-test-deploy #Test VM deployed from updated template
    vm_name_template: global-w2k12r2_template-sccm-npn1 #New name for original tempalte for update process
-   resource_pool_name: "template_patching"
+   resource_pool_name: "Resources"
    bkp_template: "global-w2k12r2_template-sccm-npn_bkp"
    test_vm: "w2k12r2-test-deploy" #Test VM deployed from updated template
