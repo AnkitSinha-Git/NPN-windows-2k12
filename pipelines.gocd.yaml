@@ -6,7 +6,7 @@ pipelines:
       only_on_changes: no
     materials:
       infracode:
-        git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-npn.git
+        git: https://github.com/AnkitSinha-Git/NPN-windows-2k12.git
         branch: master
         auto_update: true
         blacklist:
